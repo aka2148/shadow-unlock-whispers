@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import crowbarImage from "@/assets/crowbar.jpg";
+import darkBackground from "@/assets/dark-background.png";
 
 type GameState = 
   | 'password'
@@ -183,10 +184,14 @@ export const ThrillerSequence = () => {
 
       case 'threat-message':
         return (
-          <div className="min-h-screen flex items-center justify-center">
-            <div className="text-center">
-              <h1 className="text-5xl font-bold text-ominous text-blood-red">
-                I am going to do what must be done, and you will watch.
+          <div 
+            className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat relative"
+            style={{ backgroundImage: `url(${darkBackground})` }}
+          >
+            <div className="absolute inset-0 bg-black/50"></div>
+            <div className="text-center relative z-10">
+              <h1 className="text-5xl font-bold text-ominous text-bone-white drop-shadow-2xl">
+                I will do what must be done, and you will watch.
               </h1>
             </div>
           </div>
