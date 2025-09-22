@@ -76,7 +76,7 @@ export const ThrillerSequence = () => {
   };
 
   const handleWhoAreYouSubmit = () => {
-    if (whoAreYouInput.toLowerCase().includes('who is agent1297354')) {
+    if (whoAreYouInput.toLowerCase().includes('batman')) {
       setGameState('who-is-agent');
     } else {
       playGameOverSequence();
@@ -84,8 +84,12 @@ export const ThrillerSequence = () => {
   };
 
   const handleWhoIsAgentSubmit = () => {
-    // Accept any answer for the second question and show final text
-    setGameState('final-text');
+    const answer = whoIsAgentInput.toLowerCase();
+    if (answer.includes('jason todd') || answer.includes('red hood')) {
+      setGameState('final-text');
+    } else {
+      playGameOverSequence();
+    }
   };
 
   const playGameOverSequence = () => {
