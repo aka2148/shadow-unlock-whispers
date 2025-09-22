@@ -2,41 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Dark psychological thriller design system with red and black theme */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 0 0% 5%;
+    --foreground: 0 0% 95%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 90%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 90%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 0 0% 5%;
+    --primary-foreground: 0 0% 95%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 85%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 0 0% 12%;
+    --accent-foreground: 0 0% 90%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 75% 45%;
+    --destructive-foreground: 0 0% 95%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 0 0% 20%;
+    --input: 0 0% 15%;
+    --ring: 0 75% 45%;
 
-    --radius: 0.5rem;
+    --radius: 0.25rem;
+
+    /* Custom thriller theme colors */
+    --blood-red: 0 85% 35%;
+    --deep-red: 0 70% 25%;
+    --crimson: 0 80% 50%;
+    --shadow-black: 0 0% 2%;
+    --ash-gray: 0 0% 25%;
+    --bone-white: 0 0% 98%;
+
+    /* Custom gradients */
+    --gradient-blood: linear-gradient(135deg, hsl(var(--blood-red)), hsl(var(--deep-red)));
+    --gradient-shadow: linear-gradient(180deg, hsl(var(--shadow-black)), hsl(var(--background)));
+
+    /* Animation values */
+    --flash-duration: 0.3s;
+    --transition-slow: 0.8s ease-in-out;
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +115,75 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Courier New', monospace;
+  }
+
+  /* Hidden text effect - same color as background until highlighted */
+  .hidden-text {
+    color: hsl(var(--background));
+    background: hsl(var(--background));
+    user-select: text;
+    transition: all 0.3s ease;
+  }
+
+  .hidden-text::selection {
+    background: hsl(var(--crimson));
+    color: hsl(var(--bone-white));
+  }
+
+  /* Flash animations */
+  .flash-red {
+    animation: flash-red var(--flash-duration) ease-in-out;
+  }
+
+  .flash-image {
+    animation: flash-show 10s ease-in-out;
+  }
+
+  /* Typography variants */
+  .text-ominous {
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-shadow: 2px 2px 4px hsl(var(--shadow-black));
+  }
+
+  .text-blood {
+    color: hsl(var(--blood-red));
+  }
+
+  .text-crimson {
+    color: hsl(var(--crimson));
+  }
+
+  .text-bone {
+    color: hsl(var(--bone-white));
+  }
+}
+
+@layer components {
+  /* Flash keyframes */
+  @keyframes flash-red {
+    0%, 100% { background-color: hsl(var(--background)); }
+    50% { background-color: hsl(var(--blood-red)); }
+  }
+
+  @keyframes flash-show {
+    0%, 90% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+  /* Thriller button variant */
+  .btn-thriller {
+    @apply bg-gradient-to-r from-blood-red to-deep-red text-bone-white font-bold py-3 px-6 rounded border border-crimson;
+    @apply hover:from-crimson hover:to-blood-red transition-all duration-300;
+    @apply shadow-lg shadow-blood-red/25;
+  }
+
+  /* Input styling */
+  .input-thriller {
+    @apply bg-card border-border text-foreground placeholder:text-muted-foreground;
+    @apply focus:border-crimson focus:ring-1 focus:ring-crimson;
+    @apply font-mono tracking-wide;
   }
 }

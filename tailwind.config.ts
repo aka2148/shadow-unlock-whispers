@@ -57,6 +57,13 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Custom thriller theme colors
+        "blood-red": "hsl(var(--blood-red))",
+        "deep-red": "hsl(var(--deep-red))",
+        "crimson": "hsl(var(--crimson))",
+        "shadow-black": "hsl(var(--shadow-black))",
+        "ash-gray": "hsl(var(--ash-gray))",
+        "bone-white": "hsl(var(--bone-white))",
       },
       borderRadius: {
         lg: "var(--radius)",
