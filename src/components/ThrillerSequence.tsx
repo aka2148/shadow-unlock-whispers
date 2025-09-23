@@ -148,7 +148,7 @@ export const ThrillerSequence = () => {
                 <p className="hidden-text select-text">
                   So desperate to unlock the past huh? Are you sure you want to remember? 
                   You don't have to, you can forget about it all. I'll do what you never could. 
-                  I'll do what should've been done long ago. Password will be agent1297354 for now.
+                  I'll do what should've been done long ago. Password will be agent1297354.
                 </p>
               </div>
             </div>
