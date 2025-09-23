@@ -120,8 +120,8 @@ export const ThrillerSequence = () => {
     switch (gameState) {
       case 'password':
         return (
-          <div className="min-h-screen flex flex-col items-center justify-center p-8">
-            <div className="max-w-md w-full space-y-8">
+          <div className="min-h-screen flex flex-col items-center justify-center p-8 restricted-bg">
+            <div className="max-w-md w-full space-y-8 relative z-10">
               <div className="text-center">
                 <h1 className="text-4xl font-bold text-ominous text-crimson mb-8">
                   RESTRICTED ACCESS
