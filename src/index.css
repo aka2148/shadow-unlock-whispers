@@ -188,10 +188,10 @@
 
   @keyframes red-glow {
     0%, 100% { 
-      box-shadow: 0 0 20px hsl(var(--crimson) / 0.3);
+      opacity: 0.3;
     }
     50% { 
-      box-shadow: 0 0 40px hsl(var(--crimson) / 0.6), 0 0 80px hsl(var(--blood-red) / 0.3);
+      opacity: 0.6;
     }
   }
 
@@ -209,11 +209,8 @@
     @apply font-mono tracking-wide;
   }
 
-  /* Dynamic restricted access background */
+  /* Subtle restricted access background */
   .restricted-bg {
-    background: var(--gradient-restricted);
-    background-size: 400% 400%;
-    animation: restricted-pulse 8s ease-in-out infinite;
     position: relative;
   }
 
@@ -221,8 +218,8 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: var(--gradient-pulse);
-    animation: red-glow 3s ease-in-out infinite alternate;
+    background: radial-gradient(ellipse at center, hsl(var(--crimson) / 0.08), transparent 70%);
+    animation: red-glow 4s ease-in-out infinite alternate;
     pointer-events: none;
   }
 }
