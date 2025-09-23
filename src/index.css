@@ -47,6 +47,8 @@
     /* Custom gradients */
     --gradient-blood: linear-gradient(135deg, hsl(var(--blood-red)), hsl(var(--deep-red)));
     --gradient-shadow: linear-gradient(180deg, hsl(var(--shadow-black)), hsl(var(--background)));
+    --gradient-restricted: linear-gradient(45deg, hsl(var(--shadow-black)), hsl(var(--deep-red)), hsl(var(--blood-red)), hsl(var(--shadow-black)));
+    --gradient-pulse: radial-gradient(circle at 50% 50%, hsl(var(--crimson) / 0.3), hsl(var(--blood-red) / 0.1), transparent);
 
     /* Animation values */
     --flash-duration: 0.3s;
@@ -124,6 +126,8 @@
     background: hsl(var(--background));
     user-select: text;
     transition: all 0.3s ease;
+    position: relative;
+    z-index: 20;
   }
 
   .hidden-text::selection {
@@ -173,6 +177,26 @@
     100% { opacity: 0; }
   }
 
+  @keyframes restricted-pulse {
+    0%, 100% { 
+      background-position: 0% 50%;
+      transform: scale(1);
+    }
+    50% { 
+      background-position: 100% 50%;
+      transform: scale(1.02);
+    }
+  }
+
+  @keyframes red-glow {
+    0%, 100% { 
+      opacity: 0.3;
+    }
+    50% { 
+      opacity: 0.6;
+    }
+  }
+
   /* Thriller button variant */
   .btn-thriller {
     @apply bg-gradient-to-r from-blood-red to-deep-red text-bone-white font-bold py-3 px-6 rounded border border-crimson;
@@ -185,5 +209,19 @@
     @apply bg-card border-border text-foreground placeholder:text-muted-foreground;
     @apply focus:border-crimson focus:ring-1 focus:ring-crimson;
     @apply font-mono tracking-wide;
+  }
+
+  /* Subtle restricted access background */
+  .restricted-bg {
+    position: relative;
+  }
+
+  .restricted-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, hsl(var(--crimson) / 0.08), transparent 70%);
+    animation: red-glow 4s ease-in-out infinite alternate;
+    pointer-events: none;
   }
 }
